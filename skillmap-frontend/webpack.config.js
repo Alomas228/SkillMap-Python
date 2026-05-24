@@ -1,0 +1,39 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    path: path.resolve(__dirname, '../backend/spa'),
+    filename: 'bundle.js',
+    clean: false,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+      // 👇 ДОБАВЬТЕ ЭТО ПРАВИЛО ДЛЯ ИЗОБРАЖЕНИЙ
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './auth.html',
+    }),
+  ],
+  devServer: {
+    static: path.resolve(__dirname, 'dist'),
+    hot: true,
+    open: true,
+  },
+};
