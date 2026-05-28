@@ -6,6 +6,7 @@ from .views.ask import AskView
 from .views.auth import LoginView, LogoutView, MeView
 from .views.matrix import MatrixView
 from .views.me import MyDashboardView, MySkillsListView
+from .views.oauth import YandexCallbackView, YandexClaimView, YandexStartView
 from .views.projects import (
     ProjectDetailView,
     ProjectMemberDetailView,
@@ -28,6 +29,11 @@ urlpatterns = [
     path("auth/logout", LogoutView.as_view(), name="auth-logout"),
     path("auth/me", MeView.as_view(), name="auth-me"),
     path("auth/refresh", TokenRefreshView.as_view(), name="auth-refresh"),
+
+    # Яндекс OAuth
+    path("auth/yandex/start", YandexStartView.as_view(), name="auth-yandex-start"),
+    path("auth/yandex/callback", YandexCallbackView.as_view(), name="auth-yandex-callback"),
+    path("auth/yandex/claim", YandexClaimView.as_view(), name="auth-yandex-claim"),
 
     # users (HR)
     path("users", UsersListCreateView.as_view(), name="users"),

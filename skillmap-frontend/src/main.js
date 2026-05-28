@@ -9,6 +9,7 @@ import { renderHrPage } from "./pages/hr.js";
 import { renderPublicProfilePage } from "./pages/public-profile.js";
 import { renderAskPage } from "./pages/ask.js";
 import { renderCreateUserPage } from "./pages/create-user.js";
+import { renderYandexSuccessPage } from "./pages/yandex-success.js";
 
 import "./styles/main.scss";
 import "./styles/profile.scss";
@@ -62,6 +63,13 @@ function redirectByRole(user) {
 
 async function router() {
     const path = window.location.pathname;
+
+    // OAuth-callback страница: ticket → JWT. Не проверяем авторизацию,
+    // потому что юзер как раз авторизуется здесь.
+    if (path === "/auth/yandex/success") {
+        renderYandexSuccessPage();
+        return;
+    }
 
     if (path === "/" || path === "/index.html" || path === "/login") {
         const user = await getCurrentUser();

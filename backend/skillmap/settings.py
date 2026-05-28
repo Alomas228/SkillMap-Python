@@ -141,3 +141,24 @@ CORS_ALLOW_CREDENTIALS = True
 PASSWORD_HASHERS = [
     "api.hashers.BCryptNetHasher",
 ]
+
+# Яндекс OAuth — заполни в .env, если хочешь включить вход через Яндекс ID.
+# Регистрация приложения: https://oauth.yandex.ru → Создать приложение,
+# Платформа: «Веб-сервисы», Redirect URI: <твой хост>/api/auth/yandex/callback,
+# Права: login:email, login:info.
+YANDEX_CLIENT_ID = os.getenv("YANDEX_CLIENT_ID", "")
+YANDEX_CLIENT_SECRET = os.getenv("YANDEX_CLIENT_SECRET", "")
+YANDEX_REDIRECT_URI = os.getenv("YANDEX_REDIRECT_URI", "")
+YANDEX_SUCCESS_REDIRECT = os.getenv(
+    "YANDEX_SUCCESS_REDIRECT", "/auth/yandex/success"
+)
+
+# Кэш — нужен для одноразовых OAuth ticket'ов и CSRF state'ов.
+# LocMem подойдёт для разработки и для одного процесса в проде.
+# Для нескольких воркеров Gunicorn — заменить на Redis.
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "skillmap-default",
+    }
+}

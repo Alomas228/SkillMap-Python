@@ -110,6 +110,35 @@ function removeErrors(form) {
     form.querySelectorAll(".error-message").forEach((message) => message.remove());
 }
 
+function initYandexButton() {
+    const btn = document.getElementById("yandex-login-btn");
+    btn?.addEventListener("click", () => {
+        // полный редирект — браузер пойдёт на oauth.yandex.ru
+        window.location.href = "/api/auth/yandex/start";
+    });
+}
+
+function showYandexErrorIfAny() {
+    // если callback вернул ошибку, нас редиректнули на / с ?yandex_error=...
+    const url = new URL(window.location.href);
+    const err = url.searchParams.get("yandex_error");
+    if (!err) return;
+
+    const form = document.getElementById("login-form");
+    if (!form) return;
+
+    const errorDiv = document.createElement("div");
+    errorDiv.className = "error-message general-error";
+    errorDiv.style.marginBottom = "15px";
+    errorDiv.style.textAlign = "center";
+    errorDiv.textContent = `Ошибка входа через Яндекс: ${err}`;
+    form.insertBefore(errorDiv, form.firstChild);
+
+    // убираем параметр из URL, чтобы не висел после рефреша
+    url.searchParams.delete("yandex_error");
+    window.history.replaceState({}, "", url.pathname + url.search);
+}
+
 export function renderLoginPage() {
     const app = document.getElementById("app");
     if (!app) return;
@@ -133,7 +162,7 @@ export function renderLoginPage() {
                         <span>или</span>
                     </div>
 
-                    <button type="button" class="btn-google">
+                    <button type="button" class="btn-google" id="yandex-login-btn">
                         <img src="${yandexIcon}" alt="Yandex" class="google-icon">
                         Войти через Яндекс
                     </button>
@@ -150,4 +179,6 @@ export function renderLoginPage() {
     `;
 
     initLoginForm();
+    initYandexButton();
+    showYandexErrorIfAny();
 }
