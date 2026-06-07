@@ -87,10 +87,11 @@
   display: flex;
   justify-content: center;
   margin-top: 10px;
+
 }
 
 .public-profile-wrapper {
-  width: 900px;
+  width: 850px;
 }
 
 .public-profile-card {
@@ -105,6 +106,7 @@ box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, 0.2);
   display: flex;
   gap: 60px;
   margin-bottom: 20px;
+  align-items: center;
 }
 .public-name{
     margin-bottom: 5px;
@@ -119,6 +121,7 @@ box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   gap: 5px;
+  line-height: 1.6; 
 }
 
 .public-title-row {
@@ -176,14 +179,14 @@ box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .public-about p{
     margin-bottom: 0;
-
+    line-height: 1.6; 
 }
 
 /* SKILLS */
 .skill-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .badge {
@@ -199,7 +202,7 @@ box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, 0.2);
 
 /* RIGHT */
 .public-projects-section {
-  width: 300px;
+  width: 316px;
 }
 .public-projects-section h3{
       margin: 0;
@@ -217,15 +220,12 @@ box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, 0.2);
     border-bottom: none;
 }
 
-.project-title {
-  font-weight: bold;
-}
-
 .project-desc {
   font-size: 14px;
   color: #535353;
 max-width: 280px;
 margin-top: 10px;
+line-height: 1.6; 
 
 }
 .public-skills-section h3{
@@ -340,6 +340,7 @@ margin-top: 10px;
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
+    color: #1E1E1E;
 }
 
 .project-icon {

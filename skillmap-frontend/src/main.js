@@ -10,6 +10,8 @@ import { renderPublicProfilePage } from "./pages/public-profile.js";
 import { renderAskPage } from "./pages/ask.js";
 import { renderCreateUserPage } from "./pages/create-user.js";
 import { renderYandexSuccessPage } from "./pages/yandex-success.js";
+import { renderEditPublicProfilePage } from "./pages/edit-public-profile.js";
+import { renderInfoPage } from "./pages/info-edit.js";
 
 import "./styles/main.scss";
 import "./styles/profile.scss";
@@ -18,6 +20,8 @@ import "./styles/hr.scss";
 import "./styles/public-profile.scss";
 import "./styles/ask.scss";
 import "./styles/create-user.scss";
+import "./styles/edit-public-profile.scss";
+import "./styles/info-edit.scss";
 
 async function getCurrentUser() {
     try {
